@@ -11,11 +11,14 @@ import Snack from "./FoodItem";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
     async function getSnacks() {
       let snacks = await SnackOrBoozeApi.getSnacks();
+      let drinks = await SnackOrBoozeApi.getDrinks();
       setSnacks(snacks);
+      setDrinks(drinks);
       setIsLoading(false);
     }
     getSnacks();
@@ -29,7 +32,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* Added so number of drinks and snackscan be dynamic */}
-        <NavBar snacks={snacks} />
+        <NavBar snacks={snacks} drinks={drinks} />
         <main>
           <Switch>
             <Route exact path="/">
@@ -40,6 +43,14 @@ function App() {
             </Route>
             <Route path="/snacks/:id">
               <Snack items={snacks} cantFind="/snacks" />
+            </Route>
+            {/* all instances of snack would need to be changed to "item" 
+              so just kept it "snack" for simplicity's sake */}
+            <Route exact path="/drinks">
+              <Menu snacks={drinks} title="Drinks" />
+            </Route>
+            <Route path="/drinks/:id">
+              <Snack items={drinks} cantFind="/drinks" />
             </Route>
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
