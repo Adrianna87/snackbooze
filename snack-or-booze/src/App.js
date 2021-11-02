@@ -28,7 +28,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        {/* Added so number of drinks and snackscan be dynamic */}
+        <NavBar snacks={snacks} />
         <main>
           <Switch>
             <Route exact path="/">

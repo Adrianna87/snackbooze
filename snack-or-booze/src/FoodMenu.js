@@ -7,28 +7,34 @@ import {
   CardTitle,
   CardText,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Row,
+  Col
 } from "reactstrap";
 
 function FoodMenu({ snacks }) {
   return (
-    <section className="col-md-4">
+    <section className="col-md-5">
       <Card>
         <CardBody>
           <CardTitle className="font-weight-bold text-center">
-            Food Menu
+            Menu
           </CardTitle>
           <CardText>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </CardText>
-          <ListGroup>
-            {snacks.map(snack => (
-              <Link to={`/snacks/${snack.id}`} key={snack.id}>
-                <ListGroupItem>{snack.name}</ListGroupItem>
-              </Link>
-            ))}
-          </ListGroup>
+          <Row>
+            <Col>
+              <ListGroup>
+                {snacks.map(snack => (
+                  <Link to={`/snacks/${snack.id}`} key={snack.id}>
+                    <ListGroupItem>{snack.name}</ListGroupItem>
+                  </Link>
+                ))}
+              </ListGroup>
+            </Col>
+          </Row>
         </CardBody>
       </Card>
     </section>
